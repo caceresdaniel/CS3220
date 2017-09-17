@@ -1,0 +1,35 @@
+.navbar-inverse{
+	width: 200px;
+}
+
+.active{
+	background-color: white;
+}
+
+.container-fluid{
+	padding: 0px;
+}
+
+body{
+	margin: 0;
+	background-color:#337ab7;
+}
+
+.well{
+	height: 100px;
+	padding-top: 5px;
+}
+
+ul{
+	padding: 0px;
+	padding-left: 5px;
+	align-content: left;
+}
+
+.well-custom{
+	height: 30px;
+}
+
+.smal{
+	color: white;
+}
