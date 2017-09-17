@@ -31,17 +31,16 @@ public class RequestSummary extends HttpServlet {
 		out.println("<head>");
 		out.println(
 				"<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\">");
-		out.println("<link rel=\"stylesheet\" href=\"/Labs/RequestSummary/cyborg.css\" type= \"text/css\">");
+		out.println("<link rel=\"stylesheet\" href=\"cyborg.css\" type=\"text/css\">");
 		out.println("<meta charset=\"UTF-8\">");
 
 		/* Page Title goes here */
 		out.println("<title>Request Summary</title>");
 		out.println("</head>");
-
+		
 		/* Page Body goes here */
 		out.println("<body>");
 		out.println("<div class=\"container\">");
-
 		out.println("<div class=\"page-header\">");
 		out.println("<h1>Request Parameters <small>Lab 2</small></h1>");
 		out.println("<h3><small>The following <span class=\"text text-danger\">" + request.getMethod()
