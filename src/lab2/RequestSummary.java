@@ -29,15 +29,21 @@ public class RequestSummary extends HttpServlet {
 		out.println("<!DOCTYPE html>");
 		out.println("<html lang=\"en\">");
 		out.println("<head>");
+		// out.println(
+		// "<link rel=\"stylesheet\"
+		// href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\"
+		// integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\"
+		// crossorigin=\"anonymous\">");
+		// out.println("<link rel=\"stylesheet\" href=\"/css/cyborg.css\"
+		// type=\"text/css\">");
 		out.println(
-				"<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\">");
-		out.println("<link rel=\"stylesheet\" href=\"cyborg.css\" type=\"text/css\">");
+				"<link rel=\"stylesheet\" href=\"https://bootswatch.com/cyborg/bootstrap.min.css\" type=\"text/css\">");
 		out.println("<meta charset=\"UTF-8\">");
 
 		/* Page Title goes here */
 		out.println("<title>Request Summary</title>");
 		out.println("</head>");
-		
+
 		/* Page Body goes here */
 		out.println("<body>");
 		out.println("<div class=\"container\">");
@@ -48,37 +54,43 @@ public class RequestSummary extends HttpServlet {
 				+ "</span>.</small></h3>");
 		out.println("</div>");
 
-		/* Creation of the Request Parameters table */
-		out.println("<div>");
-		out.println("<h2> Request Parameters </h2>");
-		out.println("<table class=\"table table-bordered table-hover table-striped\">");
-		out.println("<tr>");
-		out.println("<th>Parameter Name</th>");
-		out.println("<th>Parameter Value</th>");
-		out.println("</tr>");
-
-		/* creates a new row for each parameter received */
-		while (requestParameters.hasMoreElements()) {
-			String requestParameter = requestParameters.nextElement();
+		if (requestParameters.hasMoreElements() == true) {
+			/* Creation of the Request Parameters table */
+			out.println("<div>");
+			out.println("<h2> Request Parameters </h2>");
+			out.println("<table class=\"table table-bordered table-hover table-striped\">");
 			out.println("<tr>");
-			out.println("<td>" + requestParameter + "</td>");
-			if (request.getParameterValues(requestParameter).length > 1) {
-				String[] parameterValues = request.getParameterValues(requestParameter);
-				out.println("<td>");
-				for (int i = 0; i < parameterValues.length; i++) {
-					out.println(parameterValues[i] + " ");
+			out.println("<th>Parameter Name</th>");
+			out.println("<th>Parameter Value</th>");
+			out.println("</tr>");
+
+			/* creates a new row for each parameter received */
+			while (requestParameters.hasMoreElements()) {
+				String requestParameter = requestParameters.nextElement();
+				out.println("<tr>");
+				out.println("<td>" + requestParameter + "</td>");
+				if (request.getParameterValues(requestParameter).length > 1) {
+					String[] parameterValues = request.getParameterValues(requestParameter);
+					out.println("<td>");
+					for (int i = 0; i < parameterValues.length; i++) {
+						out.println("<span class=\"label label-info\">" + parameterValues[i] + "</span>");
+					}
+					out.println("</td>");
+					out.println("</tr>");
+				} else {
+					out.println("<td><span class=\"label label-info\">" + request.getParameter(requestParameter)
+							+ "</span></td>");
+					out.println("</tr>");
 				}
-				out.println("</td>");
-				out.println("</tr>");
-			} else {
-				out.println("<td>" + request.getParameter(requestParameter) + "</td>");
-				out.println("</tr>");
 			}
+
+			out.println("</table>");
+			out.println("</div>");
+		} else {
+			out.println("<span class=\"text text-danger\"> No Parameter Information Received!</span>");
 		}
-
-		out.println("</table>");
-		out.println("</div>");
-
+		
+		
 		/* Creation of the Header Information table */
 		out.println("<div>");
 		out.println("<h2> Header Information </h2>");
@@ -93,7 +105,7 @@ public class RequestSummary extends HttpServlet {
 			String headerName = headerNames.nextElement();
 			out.println("<tr>");
 			out.println("<td>" + headerName + "</td>");
-			out.println("<td>" + request.getHeader(headerName) + "</td>");
+			out.println("<td><span class=\"label label-info\">" + request.getHeader(headerName) + "</span></td>");
 			out.println("</tr>");
 		}
 
