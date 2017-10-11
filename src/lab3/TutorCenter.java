@@ -12,17 +12,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/requests/GuestBook")
-public class GuestBook extends HttpServlet {
+@WebServlet("/midterm/TutorCenter")
+public class TutorCenter extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 
-		ArrayList<GuestBookEntry> entries = new ArrayList<GuestBookEntry>();
-		entries.add(new GuestBookEntry("John", "Hello!"));
-		entries.add(new GuestBookEntry("Mary", "Hi!"));
-		entries.add(new GuestBookEntry("Joe", "Howdy!"));
+		ArrayList<TutorEntry> entries = new ArrayList<TutorEntry>();
+		entries.add(new TutorEntry("John", "Boyega", "john@boyega.com", "CS2011, CS2012, CS2013"));
+		entries.add(new TutorEntry("Mary", "Jane", "mary@jane.com", "CS3337, CS3112"));
+		entries.add(new TutorEntry("Joe", "Howard", "joe@howard.com", "CS3220, CS2013, CS2012"));
 
 		ServletContext context = this.getServletContext();
 		context.setAttribute("entries", entries);
@@ -48,7 +48,7 @@ public class GuestBook extends HttpServlet {
 		out.println("    <meta charset=\"UTF-8\">");
 
 		/* Page Title goes here */
-		out.println("    <title>Guest Book</title>");
+		out.println("    <title>Available Tutors</title>");
 		out.println("</head>");
 
 		/* Page Body goes here */
@@ -56,10 +56,12 @@ public class GuestBook extends HttpServlet {
 		out.println("<div class=\"container\">");
 
 		out.println("<div class=\"page-header\">");
-		out.println("    <h1>Guest Book<small> Lab 3</small></h1>");
+		out.println("    <h1>Available Tutors<small> Tutor Center</small></h1>");
 		out.println("</div>");
 
-		out.println("<form class=\"form-inline\" action=\"GuestBook\" method=\"get\">");
+		out.println("<a class=\"btn btn-primary pull-right\" href=\"AdminCenter\">Admin Center</a>");
+
+		out.println("<form class=\"form-inline\" action=\"TutorCenter\" method=\"get\">");
 		out.println("	<div class=\"form-group\">");
 		out.println(
 				"		<input class=\"form-control\" type=\"text\" name=\"query\" placeholder=\"Enter your search term(s)\">");
@@ -68,10 +70,9 @@ public class GuestBook extends HttpServlet {
 		out.println("</form>");
 
 		out.println("<hr>");
-
 		out.println("<table class=\"table table-bordered table-striped table-hover\">");
 		out.println("<tr>");
-		out.println("  <th>Name</th><th>Message</th><th>Date</th><th>Actions</th>");
+		out.println("  <th>First Name</th><th>Last Name</th><th>Email</th><th>Courses</th><th>Date Applied</th>");
 		out.println("</tr>");
 
 		String query = "";
@@ -79,21 +80,19 @@ public class GuestBook extends HttpServlet {
 			query = request.getParameter("query");
 		}
 
-		ArrayList<GuestBookEntry> entries = (ArrayList<GuestBookEntry>) getServletContext().getAttribute("entries");
+		ArrayList<TutorEntry> entries = (ArrayList<TutorEntry>) getServletContext().getAttribute("entries");
 
-		for (GuestBookEntry entry : entries) {
-			if (entry.getName().toLowerCase().contains(query.toLowerCase())
-					|| entry.getMessage().toLowerCase().contains(query.toLowerCase())) {
+		for (TutorEntry entry : entries) {
+			if (entry.getFirstName().toLowerCase().contains(query.toLowerCase())
+					|| entry.getLastName().toLowerCase().contains(query.toLowerCase())
+					|| entry.getEmail().toLowerCase().contains(query.toLowerCase())
+					|| entry.getCourses().toLowerCase().contains(query.toLowerCase())) {
 				out.println("<tr>");
-				out.println("  <td>" + entry.getName() + "</td>");
-				out.println("  <td>" + entry.getMessage() + "</td>");
+				out.println("  <td>" + entry.getFirstName() + "</td>");
+				out.println("  <td>" + entry.getLastName() + "</td>");
+				out.println("  <td>" + entry.getEmail() + "</td>");
+				out.println("  <td>" + entry.getCourses() + "</td>");
 				out.println("  <td>" + entry.getCreated() + "</td>");
-
-				// Implement the actions
-				out.println("  <td>");
-				out.println("		<a href=\"EditEntry?id=" + entry.getId() + "\">Edit</a>");
-				out.println("		<a href=\"DeleteEntry?id=" + entry.getId() + "\">Delete</a>");
-				out.println("  </td>");
 				out.println("</tr>");
 			}
 
@@ -101,7 +100,7 @@ public class GuestBook extends HttpServlet {
 
 		out.println("</table>");
 
-		out.println("<a class=\"btn btn-primary\" href=\"AddEntry\">Add a New Entry</a>");
+		out.println("<a class=\"btn btn-primary\" href=\"AddTutor\">Add a Tutor</a>");
 
 		out.println("</div>");
 		out.println("</body>");

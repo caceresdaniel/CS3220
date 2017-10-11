@@ -9,35 +9,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-@WebServlet("/requests/DeleteEntry")
+@WebServlet("/midterm/DeleteEntry")
 public class DeleteEntry extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-  
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		// Get the element to be deleted
-		int id = Integer.parseInt( request.getParameter("id"));
-		
+		int id = Integer.parseInt(request.getParameter("id"));
+
 		// Get a reference to the entries array list
-		ArrayList<GuestBookEntry> entries
-			= (ArrayList<GuestBookEntry>) getServletContext().getAttribute("entries");
-		
+		ArrayList<TutorEntry> entries = (ArrayList<TutorEntry>) getServletContext().getAttribute("entries");
+
 		// Let's remove the element
-		for (GuestBookEntry entry : entries) {
+		for (TutorEntry entry : entries) {
 			if (entry.getId() == id) {
 				entries.remove(entry);
-				break;				
+				break;
 			}
 		}
-		
+
 		// Send the browser back to the main page
-		response.sendRedirect("GuestBook");
+		response.sendRedirect("AdminCenter");
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
