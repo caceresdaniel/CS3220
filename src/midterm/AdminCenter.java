@@ -1,4 +1,4 @@
-package lab3;
+package midterm;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/midterm/TutorCenter")
-public class TutorCenter extends HttpServlet {
+@WebServlet("/midterm/AdminCenter")
+public class AdminCenter extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public void init(ServletConfig config) throws ServletException {
@@ -56,12 +56,12 @@ public class TutorCenter extends HttpServlet {
 		out.println("<div class=\"container\">");
 
 		out.println("<div class=\"page-header\">");
-		out.println("    <h1>Available Tutors<small> Tutor Center</small></h1>");
+		out.println("    <h1>Admin Center<small> Tutor Center</small></h1>");
 		out.println("</div>");
 
-		out.println("<a class=\"btn btn-primary pull-right\" href=\"AdminCenter\">Admin Center</a>");
+		out.println("<a class=\"btn btn-primary pull-right\" href=\"TutorCenter\">Return to Available Tutors</a>");
 
-		out.println("<form class=\"form-inline\" action=\"TutorCenter\" method=\"get\">");
+		out.println("<form class=\"form-inline\" action=\"AdminCenter\" method=\"get\">");
 		out.println("	<div class=\"form-group\">");
 		out.println(
 				"		<input class=\"form-control\" type=\"text\" name=\"query\" placeholder=\"Enter your search term(s)\">");
@@ -72,7 +72,8 @@ public class TutorCenter extends HttpServlet {
 		out.println("<hr>");
 		out.println("<table class=\"table table-bordered table-striped table-hover\">");
 		out.println("<tr>");
-		out.println("  <th>First Name</th><th>Last Name</th><th>Email</th><th>Courses</th><th>Date Applied</th>");
+		out.println(
+				"  <th>First Name</th><th>Last Name</th><th>Email</th><th>Courses</th><th>Date Applied</th><th>Actions</th>");
 		out.println("</tr>");
 
 		String query = "";
@@ -93,14 +94,17 @@ public class TutorCenter extends HttpServlet {
 				out.println("  <td>" + entry.getEmail() + "</td>");
 				out.println("  <td>" + entry.getCourses() + "</td>");
 				out.println("  <td>" + entry.getCreated() + "</td>");
+
+				// Implement the actions
+				out.println("  <td>");
+				out.println("		<a href=\"DeleteEntry?id=" + entry.getId() + "\">Delete</a>");
+				out.println("  </td>");
 				out.println("</tr>");
 			}
 
 		}
 
 		out.println("</table>");
-
-		out.println("<a class=\"btn btn-primary\" href=\"AddTutor\">Add a Tutor</a>");
 
 		out.println("</div>");
 		out.println("</body>");

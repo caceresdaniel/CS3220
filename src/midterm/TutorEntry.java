@@ -1,4 +1,4 @@
-package lab3;
+package midterm;
 
 import java.util.Date;
 

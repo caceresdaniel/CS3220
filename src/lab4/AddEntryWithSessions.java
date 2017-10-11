@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import lab3.TutorEntry;
+import midterm.TutorEntry;
 
 /**
  * Servlet implementation class AddEntryWithSessions
