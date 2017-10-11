@@ -1,28 +1,11 @@
 package lab4;
 
-<<<<<<< HEAD
-=======
 import javax.servlet.http.Cookie;
 
->>>>>>> 526ef2923b06d9bc1fef9602eba99c549560945c
 public class Student {
 
 	static int count = 0;
 	static final int NUMBER_OF_ASSIGNMENTS = 5;
-<<<<<<< HEAD
-	
-	int id;	
-	String firstName, lastName;	
-	String email;
-	String password;
-	
-	double[] scores = new double[NUMBER_OF_ASSIGNMENTS];
-	
-	public Student(String firstName, String lastName, String email, String password) {
-		
-		this.id = count++;
-		
-=======
 
 	int id;
 	String firstName, lastName;
@@ -36,18 +19,10 @@ public class Student {
 
 		this.id = count++;
 
->>>>>>> 526ef2923b06d9bc1fef9602eba99c549560945c
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
-<<<<<<< HEAD
-		
-		// Randomly assign scores to this student;
-		for (int i = 0; i < NUMBER_OF_ASSIGNMENTS; i++)
-			scores[i] = Math.random() * 100;
-				
-=======
 
 		// Randomly assign scores to this student;
 		for (int i = 0; i < NUMBER_OF_ASSIGNMENTS; i++)
@@ -61,16 +36,12 @@ public class Student {
 
 	public void setCookie(String cookie) {
 		this.cookie = cookie;
->>>>>>> 526ef2923b06d9bc1fef9602eba99c549560945c
 	}
 
 	public String getFullName() {
 		return firstName + " " + lastName;
 	}
-<<<<<<< HEAD
-=======
 
->>>>>>> 526ef2923b06d9bc1fef9602eba99c549560945c
 	public String getFirstName() {
 		return firstName;
 	}
@@ -98,11 +69,7 @@ public class Student {
 	public String getPassword() {
 		return password;
 	}
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 526ef2923b06d9bc1fef9602eba99c549560945c
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -118,11 +85,5 @@ public class Student {
 	public int getId() {
 		return id;
 	}
-<<<<<<< HEAD
-		
-	
-	
-=======
 
->>>>>>> 526ef2923b06d9bc1fef9602eba99c549560945c
 }

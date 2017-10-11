@@ -1,4 +1,4 @@
-package lab4;
+package lab3;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,18 +9,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import midterm.TutorEntry;
 
 /**
- * Servlet implementation class AddEntryWithSessions
+ * Servlet implementation class AddEntry
  */
-@WebServlet("/sessions/AddEntry")
-public class AddEntryWithSessions extends HttpServlet {
+@WebServlet("/requests/AddEntry")
+public class AddEntry extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-
+       
+ 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// Set the content type
@@ -34,6 +31,8 @@ public class AddEntryWithSessions extends HttpServlet {
 		out.println("<html lang=\"en\">");
 		out.println("<head>");
 		out.println("    <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\">");
+		out.println(
+				"<link rel=\"stylesheet\" href=\"https://bootswatch.com/cyborg/bootstrap.min.css\" type=\"text/css\">");
 		out.println("    <meta charset=\"UTF-8\">");
 		
 		/* Page Title goes here */
@@ -53,19 +52,13 @@ public class AddEntryWithSessions extends HttpServlet {
 		String nameError = (String) request.getAttribute("nameError");
 		
 		if (nameError != null)
-			out.println("<p class=\"text-danger\">" + nameError + "</p>");		
+			out.println("<p class=\"text-danger\">" + nameError + "</p>");
 		
-		// check if the user's name is stored in session. If so, display the
-        // user's name; otherwise display an input field.
-        String name = (String) request.getSession().getAttribute( "name" );
-        
-        if( name != null )
-            out.println( "Name: <strong>" + name + "</strong><br />" );
-        else {
-	        	name = request.getParameter("name");
-			if (name == null) name ="";
-			out.println("Name: <input type=\"text\" name=\"name\" value=\"" + name + "\"><br>");
-        }
+		
+		String name = request.getParameter("name");
+		if (name == null) name ="";
+		
+		out.println("Name: <input type=\"text\" name=\"name\" value=\"" + name + "\"><br>");
 		
 		
 		String messageError = (String) request.getAttribute("messageError");
@@ -92,16 +85,7 @@ public class AddEntryWithSessions extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// the user's name should either be in session or a request parameter
-        HttpSession session = request.getSession();
-        
-		// First, try to read the name from the cookie 
-        String name = (String) session.getAttribute( "name" );
-		
-		// If the cookie doesn't exist, search the request for the name parameter
-		if (name == null)
-			name = request.getParameter("name");
-		
+		String name = request.getParameter("name");
 		String message = request.getParameter("message");
 		
 		boolean isNameError = name == null || name.trim().length() == 0;
@@ -111,18 +95,15 @@ public class AddEntryWithSessions extends HttpServlet {
 		if (!isNameError && !isMessageError) {
 			
 			// Create a new entry
-			TutorEntry entry = new TutorEntry(name, message);
+			GuestBookEntry entry = new GuestBookEntry(name, message);
 			
-			ArrayList<TutorEntry> entries 
-				= (ArrayList<TutorEntry>) getServletContext().getAttribute("entries");
+			ArrayList<GuestBookEntry> entries 
+				= (ArrayList<GuestBookEntry>) getServletContext().getAttribute("entries");
 			
 			// Add the new entry to our array list of entries
 			entries.add(entry);
 			
-			// Store the user's name in the session
-            session.setAttribute("name", name );            
-			
-			response.sendRedirect("../requests/GuestBook");
+			response.sendRedirect("GuestBook");
 		}
 		
 		if (isNameError)
@@ -135,5 +116,14 @@ public class AddEntryWithSessions extends HttpServlet {
 		doGet(request, response);
 	}
 
-
 }
+
+
+
+
+
+
+
+
+
+
