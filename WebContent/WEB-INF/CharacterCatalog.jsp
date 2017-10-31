@@ -19,25 +19,22 @@
 		</div>
 		
 		<div class="row">
-		
-		<c:forEach items="${characters}" var="character">
-			<div class="col-sm-4 text-center">
-				<div class="well">
-					<a href="CharacterProfile?id=${character.linkName}">
-					<h4 class="text-center">${character.name}</h4>
-					<c:if test="${character.numOfPhotos == 0}">
-						<img style="height: 150px;" src="http://via.placeholder.com/150?text=N/A" class="img-responsive img-thumbnail" alt="${character.name}">
-					</c:if>
-					<c:if test="${character.numOfPhotos > 0}">
-						<img style="height: 150px;" src="http://albertcervantes.com/cs3220/cdn/simpsons/${character.linkName}/pic_0001.jpg" class="img-responsive img-thumbnail" alt="${character.name}">
-					</c:if>
-					</a>
+			<c:forEach items="${characters}" var="character">
+				<div class="col-sm-4 text-center">
+					<div class="well">
+						<a href="CharacterProfile?id=${character.linkName}">
+						<h4 class="text-center">${character.name}</h4>
+						<c:if test="${character.numOfPhotos == 0}">
+							<img style="height: 150px;" src="http://via.placeholder.com/150?text=N/A" class="img-responsive img-thumbnail" alt="${character.name}">
+						</c:if>
+						<c:if test="${character.numOfPhotos > 0}">
+							<img style="height: 150px;" src="http://albertcervantes.com/cs3220/cdn/simpsons/${character.linkName}/pic_0001.jpg" class="img-responsive img-thumbnail" alt="${character.name}">
+						</c:if>
+						</a>
+					</div>
 				</div>
-			</div>
-		</c:forEach>
-		
+			</c:forEach>
 		</div>
-		
 	</div>
 </body>
 </html>

@@ -3,7 +3,6 @@ package lab6;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,23 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class CharacterCatalogController
- */
+
 @WebServlet("/CharacterCatalog")
 public class CharacterCatalogController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
+
 	public CharacterCatalogController() {
 		super();
 	}
 
-	/**
-	 * @see Servlet#init(ServletConfig)
-	 */
+
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 
@@ -85,20 +78,14 @@ public class CharacterCatalogController extends HttpServlet {
 
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		request.getRequestDispatcher("/WEB-INF/CharacterCatalog.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
