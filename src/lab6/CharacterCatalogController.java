@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/CharacterCatalog")
+@WebServlet("/Simpsons/CharacterCatalog")
 public class CharacterCatalogController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -25,7 +25,7 @@ public class CharacterCatalogController extends HttpServlet {
 		super.init(config);
 
 		ArrayList<SimpsonsCharacter> characters = new ArrayList<SimpsonsCharacter>();
-
+		
 		characters.add(new SimpsonsCharacter("Homer Simpson", 2246));
 		characters.add(new SimpsonsCharacter("Ned Flanders", 1454));
 		characters.add(new SimpsonsCharacter("Moe Szyslak", 1452));
@@ -82,7 +82,7 @@ public class CharacterCatalogController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.getRequestDispatcher("/WEB-INF/CharacterCatalog.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/lab6/CharacterCatalog.jsp").forward(request, response);
 	}
 
 

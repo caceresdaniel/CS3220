@@ -5,6 +5,7 @@ public class SimpsonsCharacter {
 	String name;
 	String linkName;
 	int numOfPhotos;
+	int randomNumber;
 	
 	public SimpsonsCharacter(String name, int numOfPhotos){
 		this.name = name;
@@ -32,6 +33,10 @@ public class SimpsonsCharacter {
 		this.numOfPhotos = numOfPhotos;
 	}
 	
+	public int getRandomNumber(){
+		randomNumber = (int) (Math.random() * (numOfPhotos + 1) - 1);
+		return randomNumber;
+	}
 	
 
 }

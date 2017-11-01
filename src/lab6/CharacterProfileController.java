@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/CharacterProfile")
+@WebServlet("/Simpsons/CharacterProfile")
 public class CharacterProfileController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -33,7 +33,7 @@ public class CharacterProfileController extends HttpServlet {
 		SimpsonsCharacter character = getCharacter(name);
 
 		request.setAttribute("character", character);
-		request.getRequestDispatcher("/WEB-INF/CharacterProfile.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/lab6/CharacterProfile.jsp").forward(request, response);
 
 	}
 
